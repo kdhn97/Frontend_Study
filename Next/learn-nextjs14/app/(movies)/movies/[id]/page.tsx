@@ -1,6 +1,6 @@
 import { Suspense } from "react";
 import { API_URL } from "../../../(home)/page";
-import MovieInfo from "../../../../components/movie-info";
+import MovieInfo, { getMovie } from "../../../../components/movie-info";
 import MovieVideos from "../../../../components/movie-videos";
 
 // async function getMovie(id:string) {
@@ -15,6 +15,18 @@ import MovieVideos from "../../../../components/movie-videos";
 // const response = await fetch(`${API_URL}/${id}/videos`)
 // return response.json()
 // }
+
+interface IParams {
+  params: { id: string };
+}
+
+// 반응형 Metadata - 영화 제목에 따라 사이트 이름 변경하는 방법
+export async function generateMetadata({ params: { id } }: IParams) {
+  const movie = await getMovie(id)
+  return {
+    title: movie.title,
+  };
+}
 
 export default async function MovieDetail({
   params: { id },

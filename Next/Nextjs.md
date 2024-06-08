@@ -141,3 +141,16 @@ export default async function HomePage() {
 
 ### error.tsx
 - 해당 페이지에 Error 발생 시, 보여지는 페이지
+
+---
+
+### CSS style
+- 모든 페이지에 공통된 css style 주는 법
+  1. 최상단에 styles 폴더 생성
+  2. global.css 파일 생성
+  3. app/layout.tsx 파일에 css파일을 import 해주기
+
+- 세부 페이지에 css style 주는 법
+  1. styles 폴더에 [파일명.module.css] 작성
+  2. 스타일을 적용할 파일에 import 해준다
+  예시) navigation.tsx
