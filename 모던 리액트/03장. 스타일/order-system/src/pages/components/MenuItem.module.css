@@ -1,0 +1,14 @@
+.menuLink {
+  text-decoration: none;
+  color: inherit;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 8px 16px;
+  border: 1px solid lightgray;
+  border-radius: 8px;
+}
+
+.menuLink:hover {
+  background: lightgray;
+}
