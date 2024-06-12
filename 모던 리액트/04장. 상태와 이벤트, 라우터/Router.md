@@ -245,4 +245,94 @@ return (
 ```
 
 ### React Router
-167p
+
+- 애플리케이션 안에 있는 웹 페이지를 구현하는 컴포넌트를 요청하여 웹 페이지를 렌더링하는 메커니즘
+- Next.js에서는 App Router 사용 (12장)
+
+- 라이브러리 설치 : npm install react-router-dom
+- BrowserRouter : 모든 라우팅 기능을 활성화
+- Routes
+  - 루트(경로) 정의
+  - 여러 번 사용하여 여러 개의 독립적인 라우트 그룹 정의
+  - URL 경로가 변경될 때마다 어떤 라우트 정의가 해당 URL과 일치하는지 검사
+  ```JSX
+  // 항상 <BrowserRouter></BrowserRouter> 태그 안에 위치
+    <BrowserRouter>
+      <Routes></Routes>
+    </BrowserRouter>
+  ```
+- Route
+
+  - 미리 정의된 JSX 코드가 렌더링되어야 하는 URL 경로를 정의하는 것
+  - 각각의 라우트 정의
+  - path 속성에는 해당 라우트를 활성화시키는 URL 경로 지정
+  - Routes 그룹 안에서 단 하나의 Route만 활성화
+
+  ```JSX
+    <Routes>
+      <Route path='/' element={<Home/>}/>
+    </Routes>
+  ```
+
+  - 다른 주소로 이동하는 방법
+    - 외부 URL로 이동 : a 태그
+    - 내부 URL로 이동 : Link 태그
+    - URL 이동 + style과 className 속성 제공 : NavLink 태그
+
+  ```JSX
+    import {Link, NavLink} from 'react-router-dom';
+
+    <a href='/'>홈으로</a>
+    <Link to='/aobut'>소개</Link>
+    <NavLink to='/profile' style={({isActive}) => isActive ? {color: 'red'} : {color: 'blue'}}>프로필</NavLink>
+  ```
+
+  - URL 리소스 요청 시, 매개변수 타입
+
+    1. URL 동적 매개변수 : <mark> useParams() </mark>
+
+    ```JSX
+      // ex) /profile/realdev
+      import {useParams} from 'react-router-dom';
+
+      const Profile = () => {
+        const {user} = useParams()
+        const location = useLocation()
+        return (
+          <>
+            <h1>{user} 프로필</h1>
+          </>
+        )
+      }
+      export default Profile;
+    ```
+
+    2. 질의 매개변수 : <mark> useSearchParams() </mark>
+
+    ```JSX
+      // ex) /about?detail=true
+      import {useSearchParams} from 'react-router-dom';
+
+      const About = () => {
+        const [searchParams, setSearchParams] = useSearchParams()
+        const isDetail = searchParams.get('detail')
+        return (
+          <>
+            {isDetail && <div>상세정보</div>}
+          </>
+        )
+      }
+      export default About;
+    ```
+
+  - 뒤로 가기 기능 : <mark> useNavigate() </mark>
+
+  ```JSX
+    import {useNavigate} from 'react-router-dom';
+
+    const navigate = useNavigate()
+    const goback = () => {
+      navigate(-1)
+    }
+    <button onClick={goback}>뒤로 가기</button>
+  ```
