@@ -1,0 +1,17 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    label {@apply mb-3 block text-base font-medium text-gray-500}
+    input {@apply w-full rounded-md border border-gray-300 bg-white py-1 px-6 text-base font-medium text-gray-300 outline-none focus:border-[#6A64F1] focus:shadow-md}
+}
+@layer components {
+    .button { @apply bg-gray-500 hover:bg-gray-700 text-white py-2 px-4 rounded }
+}
+@layer utilities {
+    .header {@apply px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-lg font-semibold text-gray-600 tracking-wider}
+    .row {@apply px-5 py-5 border-b border-gray-200 bg-white text-sm}
+    .column {@apply text-gray-900}
+    
+}

@@ -1,0 +1,30 @@
+html,
+body {
+    margin: 0;
+    font-family: sans-serif;   
+    background: #eee;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+main {
+    margin: 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+} 
+
+.lane {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    min-width: 320px;
+    max-width: 400px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}

@@ -1,0 +1,25 @@
+'use client';
+import Link from 'next/link';
+import useSWR, { Fetcher } from 'swr'; // npm install swr
+type Todo = {
+    id: number,
+    task: string
+};
+const fetcher: Fetcher<Todo[], string> = (...args) => fetch(...args).then((res) => res.json())
+const url = 'http://localhost:3000/api/todos';
+export default function Home() {
+    const { data, error } = useSWR(url, fetcher);
+    if (error) return <div>Failed to load</div>;
+    if (!data) return <div>Loading...</div>;
+    return (
+        <>
+            <h3>할 일 목록</h3>
+            <ul>
+                {data.map((todo: Todo) => (
+                    <li key={todo.id}>{todo.task}</li>
+                ))}
+            </ul>   
+            <Link href="/">홈으로 돌아가기</Link>  
+        </>
+    );
+}
