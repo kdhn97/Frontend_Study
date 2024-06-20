@@ -21,65 +21,70 @@
   - import { useState } from 'react';
   - ex) const [counter, setCouter] = useState(0)
   - 훅 인수에는 초기값을 지정 useState(0)
-  - 첫 번째 요소에는 상태값을 반환하는 변수 counter
-  - 두 번째 요소에는 상태값을 저장하는 변수 setCounter
+  - 첫번째 요소에는 상태값을 반환하는 변수 counter
+  - 두번째 요소에는 상태값을 저장하는 변수 setCounter
 
 ```JSX
 // 카운터 숫자를 +증가, -감소 시키는 프로그램
-import { useState } from 'react';
+  import { useState } from 'react';
 
-export default funtion Counter(props) {
-  const [counter, setCouter] = useState(0);
-  const increase = () => {
-    setCounter(counter + 1)
+  export default funtion Counter(props) {
+    const [counter, setCouter] = useState(0);
+    const increase = () => {
+      setCounter(counter + 1)
+    }
+    const decrease = () => {
+      setCounter(counter - 1)
+    }
+    return (
+      <div>
+        <h1>{props.title}</h1>
+        <button onClick={increase}>+</button>
+        <button onClick={decrease}>-</button>
+        <h2>{counter}</h2>
+      </div>
+    )
   }
-  const decrease = () => {
-    setCounter(counter - 1)
-  }
-  return (
-    <div>
-      <h1>{props.title}</h1>
-      <button onClick={increase}>+</button>
-      <button onClick={decrease}>-</button>
-      <h2>{counter}</h2>
-    </div>
-  )
-}
+// useState() 훅이 Counter 함수 컴포넌트를 다시 호출하여 상태값이 반영된 렌더링 결과를 반환하는 것
+//  -> 재평가
 ```
 
 ```JSX
 // 이름과 이메일을 입력하면, 즉시 출력되는 프로그램 (양방향 바인딩)
-import { useState } from 'react';
+  import { useState } from 'react';
 
-const MultiState = () => {
-  const [user, setUser] = useState({name: '', email: ''});
-  const handleChangeName = (e) => {
-    setUser(prevUser => ({
-      name: e.target.value,
-      email: prevUser.email
-    }))
+  const MultiState = () => {
+  // useState() 여러 번 사용하는 방법
+    // const [name, setName] = useState('')
+    // const [email, setEmail] = useState('')
+    const [user, setUser] = useState({name: '', email: ''});
+    const handleChangeName = (e) => {
+      setUser(prevUser => ({
+        name: e.target.value,
+        email: prevUser.email
+      }))
+    }
+    const handleChangeEmail = (e) => {
+      setUser(prevUser => ({
+        name: prevUser.name,
+        email: e.target.value
+      }))
+    }
+    const handleReset = () => {
+      setUser({name: '', email: ''})
+    }
+    return (
+      <>
+        <div>
+          이름 : <input value={user.name} onChange={handleChangeName}/>
+          이메일 : <input value={user.email} onChange={handleChangeEmail}/>
+        </div>
+        <div>
+          <button onClick={handleReset}>초기화</button>
+        </div>
+      </>
+    )
   }
-  const handleChangeEmail = (e) => {
-    setUser(prevUser => ({
-      name: prevUser.name,
-      email: e.target.value
-    }))
-  }
-  const handleReset = () => {
-    setUser({name: '', email: ''})
-  }
-  return (
-    <>
-      <div>
-        이름 : <input value={user.name} onChange={handleChangeName}/>
-        이메일 : <input value={user.email} onChange={handleChangeEmail}/>
-      </div>
-      <div>
-        <button onClick={handleReset}>초기화</button>
-      </div>
-    </>
-  )
-}
 ```
 
 ### 입력 폼과 useRef() Hook
@@ -283,7 +288,7 @@ return (
     import {Link, NavLink} from 'react-router-dom';
 
     <a href='/'>홈으로</a>
-    <Link to='/aobut'>소개</Link>
+    <Link to='/about'>소개</Link>
     <NavLink to='/profile' style={({isActive}) => isActive ? {color: 'red'} : {color: 'blue'}}>프로필</NavLink>
   ```
 
