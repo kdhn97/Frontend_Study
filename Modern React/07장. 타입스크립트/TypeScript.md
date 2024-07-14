@@ -36,7 +36,7 @@
 
 ### 리액트 타입스크립트
 
-```JSX
+```TSX
 import React, {useRef} from 'react';
 import ReactDOM from 'react-dom';
 
@@ -44,7 +44,6 @@ type ModalTodoProps = {
   children: React.ReactNode
   onClose: React.MouseEventHandler<HTMLButtonElement>
 }
-const modalRoot = document.getElementById('modal')as HTMLDivElement
 const Modal = {props: ModalTodoProps} => {
   // 생략
 }

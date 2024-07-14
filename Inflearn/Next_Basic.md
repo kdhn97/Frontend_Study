@@ -1,15 +1,14 @@
-# 제 1장. Next.js
+# 21. 개발 : 웹 - Create Next App+React+Typescript+next.js로 프론트엔드 프로젝트 토대 쌓기
+
+### React란?
+
+- 사용자 인터페이스를 만들기 위한 자바스크립트 라이브러리
 
 ### Next란?
 
-- React 프레임워크
+- 풀스택 웹 애플리케이션을 구축하기 위한 React 프레임워크
 - Rust 언어 기반의 SWC(Speed Web Compiler)를 타입스크립트 컴파일러로 채택
 - 번들링 도구 : TurboPack 채택
-
-### React와 Next 공통점
-
-- SPA (Single Page Application)
-  새로운 콘텐츠가 필요할 때마다 '전체 페이지를 다시 로드하지 않고', 필요한 데이터를 서버로부터 비동기적으로 받아옵니다.
 
 ### React와 Next 차이점
 
@@ -52,7 +51,7 @@
   - Would you like to customize the default import alias (@/\*)? No / Yes
     -> No : Next.js는 기본적으로 @/*를 src/*로 설정합니다. 이 설정을 유지하면 @를 사용하여 src 디렉토리의 파일들을 import할 수 있습니다.
 
-### 기타 설명
+### Next 특징
 
 1. jsx 문법 도입
 
@@ -64,7 +63,6 @@
 - 함수 컴포넌트는 function과 Hooks를 사용
 
   ```TSX
-  // 동적 컨텐츠 출력하는 표현식
     const App = () => {
       return (
         <div>
@@ -72,7 +70,7 @@
         </div>
       )
     }
-    export default App()  // 방법 1. App 컴포넌트를 모듈의 기본(default) 내보내기(export)로 설정하는 것을 의미
+    export default App()  // App 컴포넌트를 모듈의 기본(default) 내보내기(export)로 설정하는 것을 의미
   ```
 
   ```TSX
@@ -87,7 +85,10 @@
     }
   ```
 
-3. TypeScript : JavaScript 코드에 '타입'을 명시적으로 정의할 수 있는 기능을 추가함으로써, 코드의 오류를 컴파일 시점에 미리 잡아낼 수 있습니다
+3. TypeScript
+
+- 자바스크립트를 기반으로 정적 타입 문법을 추가한 프로그래밍 언어
+- 자바스크립트 코드에 '타입'을 명시적으로 정의할 수 있는 기능을 추가함으로써, 코드의 오류를 컴파일 시점에 미리 잡아낼 수 있습니다
 
 - 작성 방법 -> [ 변수명 : 타입 ]
 
@@ -113,8 +114,8 @@
 4. CSS 종류
 
 - Bootstrap, Tailwind CSS: 유틸리티 클래스 기반의 프레임워크
-- Styled Components or Emotion (CSS-in-JS)
-- SASS or SCSS (CSS 전처리기) : 중괄호({})와 세미콜론(;) 사용 유무 차이
+- Styled Components, Emotion (CSS-in-JS)
+- SASS, SCSS (CSS 전처리기) : 중괄호({})와 세미콜론(;) 사용 유무 차이
 - css module : 기본 CSS
   - global.css : 모든 파일에 적용되는 CSS
   - .module.css : 파일별로 import 하여 사용하는 CSS
@@ -143,7 +144,7 @@
   // Link 태그 사용 시 - 새로고침 없음
 ```
 
-### Next 폴더 설명
+## Next 폴더 설명 - 폴더를 사용하여 경로를 정의하는 파일 시스템 기반 라우터
 
 - public 폴더 (정적 이미지 폴더)
 
@@ -161,7 +162,7 @@
 
 - [폴더명] 폴더
 
-  - 동적 세그먼트 (Slug)
+  - 동적 경로 세그먼트 (Slug)
   - /movies/:id 를 생성하여 여러 페이지를 만들려면?
     -> movies 파일 아래 [id] 하위폴더를 생성하면 된다
     -> 이때 id는 동적이기에 '/movies/1' 또는 '/movies/2'... 처럼 만들어짐
@@ -183,7 +184,12 @@
   - 하나의 화면에 두 개의 페이지를 보여줌
   - 주소창(URL)의 영향을 미치지 않는다
 
-### Next 파일 설명 (타입스크립트 확장자 .tsx)
+- (.)폴더명 (인터셉트 폴더)
+
+  - (.)folder - 같은 수준의 파일을 가로채기
+  - (..)folder - 한 단계 위를 가로채다
+
+## Next 파일 설명 (타입스크립트 확장자 .tsx)
 
 - layout.tsx
 
@@ -207,3 +213,5 @@
 - loading.tsx : 해당 페이지에 Loaging 화면 시, 보여지는 페이지
 
 - error.tsx : 해당 페이지에 Error 발생 시, 보여지는 페이지
+
+- default : 병렬 경로 대체 페이지, @modal 폴더에 작성
